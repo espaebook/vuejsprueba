@@ -91,8 +91,10 @@ export default {
 
     const route = useRoute();
     let name = route.params.name;
+    let pais = route.params.pais;
+
     axios
-      .get('https://newsapi.org/v2/top-headlines?q='+name+'&country=ve&language=es&pageSize=10&apiKey=e4a148358abc436087c2df46a367587d')
+      .get('https://newsapi.org/v2/top-headlines?q='+name+'&country='+pais+'&pageSize=10&apiKey=b58ea758718441f6bed89f6b379daec8')
       .then((response) => {
         this.datos = response.data.articles[0]
         this.fuente = response.data.articles[0].source.name

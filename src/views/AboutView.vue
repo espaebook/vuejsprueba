@@ -7,6 +7,7 @@
     </Form>
   </div>
 </template>
+
 <script>
 import { Form, Field, ErrorMessage } from 'vee-validate';
 export default {
