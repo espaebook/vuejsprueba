@@ -265,7 +265,7 @@ export default {
     }
 
     axios
-      .get('https://newsapi.org/v2/top-headlines?country='+this.pais+'&pageSize=10&apiKey=b58ea758718441f6bed89f6b379daec8')
+      .get('https://newsapi.org/v2/top-headlines?country='+this.pais+'&pageSize=10&apiKey=e4a148358abc436087c2df46a367587d')
       .then((response) => {
         this.datos = response.data
     })
@@ -292,7 +292,7 @@ export default {
     busca(values) {    
 
         axios
-        .get('https://newsapi.org/v2/top-headlines?q='+values+'&country='+this.pais+'&pageSize=10&apiKey=b58ea758718441f6bed89f6b379daec8')
+        .get('https://newsapi.org/v2/top-headlines?q='+values+'&country='+this.pais+'&pageSize=10&apiKey=e4a148358abc436087c2df46a367587d')
         .then((response) => {    
             this.resultados = response.data
         })
@@ -302,16 +302,12 @@ export default {
         localStorage.setItem("pais", event.target.value);
         
         axios
-        .get('https://newsapi.org/v2/top-headlines?country='+event.target.value+'&apiKey=b58ea758718441f6bed89f6b379daec8')
+        .get('https://newsapi.org/v2/top-headlines?country='+localStorage.getItem("pais")+'&apiKey=e4a148358abc436087c2df46a367587d')
         .then((response) => {
             this.datos = response.data
         })
     }
 
-    // sendToView(view) {
-
-    //     this.$router.push({path: '/newpath', query : { foo: "bar"}});
-    // },
   },
   components: {
     Carousel,
