@@ -13,7 +13,7 @@
 
                         </div>
                         <div class="w-3/5" id='pais'>
-                            <select  @change="cambiarPais($event)" class="w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white rounded-md outline-none dark:placeholder:text-gray-200 dark:bg-gray-900 focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100 dark:border-gray-600 dark:focus:border-white dark:ring-0">
+                            <select  v-model="selected" @change="cambiarPais($event)" class="w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white rounded-md outline-none dark:placeholder:text-gray-200 dark:bg-gray-900 focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100 dark:border-gray-600 dark:focus:border-white dark:ring-0">
                                 <option :selected="true" v-for="pais in paises" :key="pais" :value="pais.id">{{ pais.name }}</option>                                
                             </select>                            
                         </div>
@@ -37,7 +37,7 @@
                             <div class="cursor-pointer group">
                                 <div class="overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800 hover:scale-105">
 
-                                    <a v-if="dato.urlToImage" class="relative block aspect-video" :href="'/detalles/'+dato.title+'/'+pais">
+                                    <a v-if="dato.urlToImage" class="relative block aspect-video" :href="'/detalles/'+dato.title">
 
                                         <img
                                         alt="Thumbnail"
@@ -51,7 +51,7 @@
                                         />
                                     </a>
 
-                                    <a v-else class="relative block aspect-video" :href="'/detalles/'+dato.title+'/'+pais">
+                                    <a v-else class="relative block aspect-video" :href="'/detalles/'+dato.title">
 
                                         <img
                                         alt="Thumbnail"
@@ -69,7 +69,7 @@
                                 <div>
 
                                     <h2 class="text-lg font-semibold leading-snug tracking-tight mt-2 dark:text-white">
-                                        <a :href="'/detalles/'+dato.title+'/'+pais">
+                                        <a :href="'/detalles/'+dato.title">
                                             <span class="bg-gradient-to-r from-green-200 to-green-100 dark:from-purple-800 dark:to-purple-900 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px]">
                                                 {{ dato.title }}
                                             </span>
@@ -157,7 +157,7 @@
                             <div v-for="resultado in resultados.articles" v-bind:key="resultado.status" class="cursor-pointer group">
                                 <div class="overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800 hover:scale-105">
 
-                                    <a v-if="resultado.urlToImage" class="relative block aspect-video" :href="'/detalles/'+resultado.title+'/'+pais">
+                                    <a v-if="resultado.urlToImage" class="relative block aspect-video" :href="'/detalles/'+resultado.title">
 
                                         <img
                                         alt="Thumbnail"
@@ -171,7 +171,7 @@
                                         />
                                     </a>
 
-                                    <a v-else class="relative block aspect-video" :href="'/detalles/'+resultado.title+'/'+pais">
+                                    <a v-else class="relative block aspect-video" :href="'/detalles/'+resultado.title">
 
                                         <img
                                         alt="Thumbnail"
@@ -188,7 +188,7 @@
                         
                                 <div>
                                     <h2 class="text-lg font-semibold leading-snug tracking-tight mt-2 dark:text-white">
-                                        <a :href="'/detalles/'+resultado.title+'/'+pais">
+                                        <a :href="'/detalles/'+resultado.title">
                                             <span class="bg-gradient-to-r from-green-200 to-green-100 dark:from-purple-800 dark:to-purple-900 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px]">
                                                 {{ resultado.title }}
                                             </span>
@@ -249,19 +249,23 @@ export default {
         datos: [],
         resultados: [],
         paises: [{"id":"ar", "name":"Argentina"}, {"id":"au", "name":"Australia"}, {"id":"at", "name":"Austria"}, {"id":"be", "name":"Bélgica"}, {"id":"br", "name":"Brasil"}, {"id":"bg", "name":"Bulgaria"}, {"id":"ca", "name":"Canadá"}, {"id":"cn", "name":"Porcelana"}, {"id":"co", "name":"Colombia"}, {"id":"cu", "name":"Cuba"}, {"id":"cz", "name":"Republica checa"}, {"id":"eg", "name":"Egipto"}, {"id":"fr", "name":"Francia"}, {"id":"de", "name":"Alemania"}, {"id":"gr", "name":"Grecia"}, {"id":"hk", "name":"Hong Kong"}, {"id":"hu", "name":"Hungría"}, {"id":"in", "name":"India"}, {"id":"id", "name":"Indonesia"}, {"id":"ie", "name":"Irlanda"}, {"id":"il", "name":"Israel"}, {"id":"it", "name":"Italia"}, {"id":"jp", "name":"Japón"}, {"id":"lv", "name":"letonia"}, {"id":"lt", "name":"Lituania"}, {"id":"my", "name":"Malasia"}, {"id":"mx", "name":"México"}, {"id":"ma", "name":"Marruecos"}, {"id":"nl", "name":"Países Bajos"}, {"id":"nz", "name":"Nueva Zelanda"}, {"id":"ng", "name":"Nigeria"}, {"id":"no", "name":"Noruega"}, {"id":"ph", "name":"Filipinas"}, {"id":"pl", "name":"Polonia"}, {"id":"pt", "name":"Portugal"}, {"id":"ro", "name":"Rumania"}, {"id":"ru", "name":"Rusia"}, {"id":"sa", "name":"Arabia Saudita"}, {"id":"rs", "name":"Serbia"}, {"id":"sg", "name":"Singapur"}, {"id":"sk", "name":"Eslovaquia"}, {"id":"si", "name":"Eslovenia"}, {"id":"za", "name":"Sudáfrica"}, {"id":"kr", "name":"Corea del Sur"}, {"id":"se", "name":"Suecia"}, {"id":"ch", "name":"Suiza"}, {"id":"tw", "name":"Taiwán"}, {"id":"th", "name":"Tailandia"}, {"id":"tr", "name":"Pavo"}, {"id":"ae", "name":"Emiratos Árabes Unidos"}, {"id":"ua", "name":"Ucrania"}, {"id":"gb", "name":"Reino Unido"}, {"id":"us", "name":"Estados Unidos"}, {"id":"ve", "name":"Venezuela"}],
-        selected: "Venezuela",
+        selected: localStorage.getItem("pais"),
         pais: "", 
                 
     }
   },
   mounted() {  
 
+    
+    this.pais = localStorage.getItem("pais");
+
     if (!this.pais) {
-        this.pais = 've';
+        localStorage.setItem("pais", 've');
+        this.pais = localStorage.getItem("pais");
     }
 
     axios
-      .get('https://newsapi.org/v2/top-headlines?country=ve&language=es&pageSize=10&apiKey=b58ea758718441f6bed89f6b379daec8')
+      .get('https://newsapi.org/v2/top-headlines?country='+this.pais+'&pageSize=10&apiKey=b58ea758718441f6bed89f6b379daec8')
       .then((response) => {
         this.datos = response.data
     })
@@ -294,7 +298,9 @@ export default {
         })
     },
     cambiarPais(event) {
-        this.pais = event.target.value
+
+        localStorage.setItem("pais", event.target.value);
+        
         axios
         .get('https://newsapi.org/v2/top-headlines?country='+event.target.value+'&apiKey=b58ea758718441f6bed89f6b379daec8')
         .then((response) => {

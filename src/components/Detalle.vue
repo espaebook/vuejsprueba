@@ -89,9 +89,11 @@ export default {
   },
   mounted() {
 
+    let pais = localStorage.getItem("pais");
+
     const route = useRoute();
     let name = route.params.name;
-    let pais = route.params.pais;
+    // let pais = route.params.pais;
 
     axios
       .get('https://newsapi.org/v2/top-headlines?q='+name+'&country='+pais+'&pageSize=10&apiKey=b58ea758718441f6bed89f6b379daec8')
