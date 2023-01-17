@@ -14,7 +14,8 @@
         <div class="flex mt-8 space-x-3 text-gray-500">
 
           <div class="flex items-center space-x-2 text-sm">
-              <p class="text-gray-800 dark:text-gray-400">Autor: {{ datos.author }}</p>
+              <p v-if="datos.author" class="text-gray-800 dark:text-gray-400">Autor: {{ datos.author }}</p>
+              <p v-else class="text-gray-800 dark:text-gray-400">Autor: Anónimo</p>
               <span class="text-xs text-gray-300 dark:text-gray-600">•</span>
               <time class="text-gray-500 dark:text-gray-400">Fecha: {{ dateTime(datos.publishedAt) }}</time>
           </div>
@@ -61,8 +62,7 @@
       <div class="flex mt-8 space-x-3 text-gray-500">
 
         <div class="flex items-center space-x-2 text-sm">
-            <p class="text-gray-800 dark:text-gray-400">Fuente: {{ fuente }}</p>
-    
+            <p class="text-gray-800 dark:text-gray-400">Fuente: {{ fuente }}</p>    
         </div>
 
       </div>
@@ -105,7 +105,7 @@ export default {
         event.target.src = "https://pbs.twimg.com/media/DjzCtwVX0AAVtpp.jpg" 
     },
     dateTime(value) {
-      return moment(value).locale('es').format('d-m-y');
+      return moment(value).locale('es').format('DD/MM/YYYY');
     },
   }
 

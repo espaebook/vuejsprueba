@@ -255,6 +255,11 @@ export default {
     }
   },
   mounted() {  
+
+    if (!this.pais) {
+        this.pais = 've';
+    }
+
     axios
       .get('https://newsapi.org/v2/top-headlines?country=ve&language=es&pageSize=10&apiKey=b58ea758718441f6bed89f6b379daec8')
       .then((response) => {
@@ -282,16 +287,9 @@ export default {
     },
     busca(values) {    
 
-        if (!this.pais) {
-            this.pais = 've';
-        }
-        
-        
-
         axios
         .get('https://newsapi.org/v2/top-headlines?q='+values+'&country='+this.pais+'&pageSize=10&apiKey=b58ea758718441f6bed89f6b379daec8')
         .then((response) => {    
-            console.log(response.data)
             this.resultados = response.data
         })
     },
